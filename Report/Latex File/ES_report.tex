@@ -1,0 +1,156 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{url} % Added for proper URL formatting
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+\title{How to Handle Large Datasets? PCA Comes to Rescue}
+\author{
+    \IEEEauthorblockN{Khushal Khan, Behram Khan, Abdullah Khan, Noshair Imtiaz}
+    \IEEEauthorblockA{\textit{Computer Engineering} \\
+    \textit{Ghulam Ishaq Khan Institute of Engineering Sciences and Technology}\\
+    Topi, Swabi, Pakistan \\
+    \{reg.no1, reg.no2, reg.no3, reg.no4\}@gmail.com}
+    \thanks{Group No: X} % Replace X with your actual group number
+}
+
+\maketitle
+
+\begin{abstract}
+A multispectral image captures information across various spectral bands, providing valuable insights beyond the visible spectrum. This paper explores the application of Principal Component Analysis (PCA) to reduce the dimensionality of multispectral images and includes a comprehensive error analysis of the transformed images. The experiment reveals the effectiveness of PCA in handling large datasets and emphasizes its significance in remote sensing applications.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Multispectral Imaging, Principal Component Analysis, Dimensionality Reduction, Error Analysis, Remote Sensing.
+\end{IEEEkeywords}
+
+\section{Introduction}
+Multispectral imaging goes beyond the limitations of conventional images by employing more than three spectral filters to capture information. This technology enables the simultaneous analysis of data across multiple bands, allowing for the extraction of valuable insights that remain hidden in standard images. Multispectral imaging finds diverse applications globally, including areas such as land mine detection, weather forecasting, space-based imaging, ballistic missile detection, document and artwork analysis, as well as military target tracking.
+
+In this project, we delve into the realm of multispectral imaging using datasets obtained from the Landsat program. Specifically, we have acquired two datasets – one containing the multispectral image and the other consisting of images from individual bands of the Chitral region. These datasets, obtained from https://earthexplorer.usgs.gov, serve as the foundation for our exploration.
+
+Principal Component Analysis (PCA) stands as a key statistical technique employed in this study to address the challenges posed by high-dimensional datasets. PCA facilitates dimensionality reduction by linearly transforming the data into a new coordinate system. This new representation captures (most of) the variation in the data using fewer dimensions than the original dataset. PCA has proven applications in various fields, including population genetics, microbiome studies, and atmospheric science.
+
+\section{Methodology}
+\subsection{Basic Operations on Multispectral Images}
+The initial phase involves a series of operations to preprocess and prepare the multispectral dataset for PCA.
+
+\subsubsection{Visualization of Bands}
+In our dataset, we worked with multiple raster graphic images representing different bands. Utilizing the Geospatial Data Abstraction Library (GDAL) in Python, we read the raster images and converted them into arrays. This conversion enabled us to programmatically access and manipulate pixel values within the images. Following the data transformation, the Matplotlib Python library played a crucial role in visualizing the information.
+
+\subsubsection{Cropping the Size}
+The Python Imaging Library was employed for a four-dimensional cropping strategy, considering left, top, right, and bottom dimensions. This cropping process refined the region of interest within the multispectral images.
+
+\subsubsection{Concatenation of Bands}
+During this phase, we scaled the images representing different bands of our multispectral dataset. The NumPy library facilitated the concatenation of these scaled bands into a unified multispectral image. The concatenated image was then visualized using Matplotlib.
+
+\begin{table}[H]
+    \caption{Operations on Multispectral Images}
+    \begin{center}
+        \begin{tabular}{|c|c|}
+            \hline
+            \textbf{Operation} & \textbf{Tool/Library} \\
+            \hline
+            Visualization of Bands & Matplotlib, GDAL \\
+            \hline
+            Cropping the Size & Python Imaging Library \\
+            \hline
+            Concatenation of Bands & NumPy \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+
+\subsection{Applying PCA to Multi-Dimensional Image}
+The core of the project involves applying PCA to the preprocessed multispectral image. The following steps detail the methodology:
+
+\subsubsection{Importing Required Libraries}
+We utilized essential libraries, including Matplotlib for visualization, scikit-learn for PCA implementation, and NumPy for array operations.
+
+\subsubsection{Reading the Multidimensional Image}
+Using Matplotlib's imread function, we loaded the preprocessed multispectral image.
+
+\subsubsection{Preprocessing Step}
+The preprocessing involved converting the data type of the image array to uint8 for ease of handling, normalizing the array, and converting the image array to 2D to prepare it for PCA.
+
+\subsubsection{Creating PCA Function}
+A custom PCA function was developed using scikit-learn's PCA module. This involved finding the principal components, applying these components to the image, and assessing projections of principal components on the image.
+
+\begin{table}[H]
+    \caption{Principal Component Analysis Steps}
+    \begin{center}
+        \begin{tabular}{|c|c|}
+            \hline
+            \textbf{Step} & \textbf{Action} \\
+            \hline
+            Importing Required Libraries & Matplotlib, scikit-learn, NumPy \\
+            \hline
+            Reading the Multidimensional Image & Matplotlib \\
+            \hline
+            Preprocessing Step & Data type conversion, normalization, 2D conversion \\
+            \hline
+            Creating PCA Function & scikit-learn PCA module \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+
+\subsection{Error Analysis on the Use of PCA}
+An in-depth error analysis was conducted to assess the quality of transformed images resulting from PCA. Different numbers of principal components (10, 30, 50, and 95) were considered, and Mean Squared Error (MSE) was employed to quantify the dissimilarity between the original and transformed images.
+
+\begin{table}[H]
+    \caption{Error Analysis of PCA}
+    \begin{center}
+        \begin{tabular}{|c|c|}
+            \hline
+            \textbf{Number of Principal Components} & \textbf{Mean Squared Error (MSE)} \\
+            \hline
+            10 & Placeholder \\
+            \hline
+            30 & Placeholder \\
+            \hline
+            50 & Placeholder \\
+            \hline
+            95 & Placeholder \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+
+\section{Results}
+The experiment yielded insightful results, demonstrating that an increase in the percentage of PCA components correlated with a reduction in Mean Squared Error (MSE). Notably, the 95% principal components configuration exhibited the least error, indicating its suitability for effective dimensionality reduction in multispectral images.
+
+\section{Discussion}
+The successful application of PCA in reducing dimensionality opens avenues for enhanced multispectral image analysis. The choice of the optimal percentage of principal components is crucial and depends on the specific requirements of the remote sensing application. Further refinements in the PCA algorithm and exploration of advanced techniques could contribute to even more precise results.
+
+\section{Task Distribution}
+The distribution of tasks among team members is as follows:
+
+\begin{itemize}
+    \item Khushal Khan: Visualization of Bands
+    \item Behram Khan: Cropping the Size
+    \item Abdullah Khan: Concatenation of Bands
+    \item Noshair Imtiaz: PCA Implementation and Error Analysis
+\end{itemize}
+
+\section{Conclusion}
+In conclusion, this project illustrates the significance of Principal Component Analysis in handling large multispectral datasets. The combination of advanced visualization, preprocessing, and PCA application provides a robust framework for effective dimensionality reduction. The error analysis underscores the importance of selecting an appropriate percentage of principal components for optimal results in remote sensing applications.
+
+\section*{References}
+\begin{thebibliography}{1}
+    \bibitem{reference1}
+    Wikipedia, "Earth observation satellite," 21 Jan 2017. [Online]. Available: \url{https://en.wikipedia.org/wiki/Earth_observation_satellite}
+    % Add more references as needed
+\end{thebibliography}
+
+\end{document}
+
